@@ -2,31 +2,28 @@
 require '../frameworks/aws/aws-autoloader.php';
 use Aws\CognitoIdentity\CognitoIdentityClient;
 use Aws\Sts\StsClient;
+use Aws\Credentials\CredentialProvider;
 
 class CognitoHelper
 {
-    private $sharedConfig = [
-        'profile' => 'temp',
+    private $sharedConfig = [        
         'region'  => 'us-west-2',
         'version' => 'latest'
     ];
-
-    // TEST METHOD DELETE ME
-    function testFoobar(){
-        return 'test';
-    }
-
 
 
     /********** USER PROFILE **********/
     // CREATES USER IN COGNITO
     function createUser($Username, $Pw, $Email){
-
         try{
             $sdk = new Aws\Sdk($this->sharedConfig);
 
             // GET COGNITO CLIENT
-            $cognitoClient = $sdk->createCognitoIdentityProvider();
+            $cognitoClient = $sdk->createCognitoIdentityProvider(
+                array(
+                    'profile' => 'garagely_lpx'
+                )
+            );
 
             // CREATE USER
             $result = $cognitoClient->signUp([
@@ -47,9 +44,6 @@ class CognitoHelper
         return $result;
     }
 
-    function getUserByName($Username){
-
-    } 
     
 }
 
