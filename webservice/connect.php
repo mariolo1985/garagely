@@ -1,7 +1,7 @@
 
         <?php
             
-            $mysqli = getConnected("external-db.s209002.gridserver.com","db209002_mlo","One8turbo*","db209002_garagely");
+            $mysqli = getConnected("external-db.s209002.gridserver.com","user","PW","db209002_garagely");
           
             function getConnected($host,$user,$pass,$db){
                 $mysqli = @new mysqli($host, $user, $pass, $db);
