@@ -15,6 +15,7 @@ class CognitoHelper
     /********** USER PROFILE **********/
     // CREATES USER IN COGNITO
     function createUser($Username, $Pw, $Email){
+
         try{
             $sdk = new Aws\Sdk($this->sharedConfig);
             // GET COGNITO CLIENT
@@ -36,11 +37,12 @@ class CognitoHelper
                     ]
                 ]
             ]);
-        }catch(Exception $e){
-            return $e->getMessage();
-        }
 
-        return $result;
+            return $result;
+        }catch(Exception $e){            
+            return $e;
+        }
+        
     }// end createuser
 
     // AUTHENTICATE USER 
