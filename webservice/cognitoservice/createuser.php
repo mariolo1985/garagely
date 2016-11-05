@@ -5,11 +5,12 @@
     header('Content-type: application/jsonp');
 
     try{
-        if ((isset($_GET['username'])) && (isset($_GET['pw']))) {
-            $username = $_GET['username'];
-            $pw = $_GET['pw'];
+        if ((isset($_POST['username'])) && (isset($_POST['pw'])) && (isset($_POST['email']))) {
+            $username = $_POST['username'];
+            $pw = $_POST['pw'];
+            $email = $_POST['email'];
             $cognitoHelper = new CognitoHelper();
-            $result = $cognitoHelper->authUser($username,$pw);
+            $result = $cognitoHelper->createUser($username,$pw,$email);
 
             // return as json
             $result = json_encode($result['AuthenticationResult']);
