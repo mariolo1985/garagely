@@ -65,6 +65,8 @@ class CognitoHelper
 
             return $result;
         }catch(Exception $e){
+            // TO-DO : HANDLE PASSING A BETTER RESPONSE TO WEB SERVICE
+            // CURRENTLY AUTHOUSER.PHP GETS 'E' IF NOT AUTHO'D
             return $e->getMessage();
         }
     }// end authuser
