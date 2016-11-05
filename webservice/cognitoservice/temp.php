@@ -9,7 +9,7 @@ try{
     $cognitoHelper = new CognitoHelper();
     echo '<p>Have cognitoHelper';
 
-    $msg = $cognitoHelper->authUser('newtest1','Password!');
+    $msg = $cognitoHelper->authUser('newtest2','Password!');
     echo "<p>" . $msg . "</p>";
     echo json_encode($msg['AuthenticationResult']);
 
