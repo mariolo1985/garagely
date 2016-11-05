@@ -1,0 +1,18 @@
+@import "font.less";
+.clear:before,
+.clear:after{
+    clear:both;
+    display:table;
+    content:'';
+}
+html,
+body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: @default-font;
+}
+@import "content.less";
+@import "button.less";
+@import "login.less";
