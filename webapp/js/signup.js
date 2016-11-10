@@ -23,18 +23,16 @@ function signUp(username, pw, email) {
         }
     ).done(function (result) {
 
-        var jResult = JSON.parse(result);
-        var des = jResult['Destination'];
-        if (typeof (des) != 'undefined') {
-            // SAVE toke
-            // MOVE ON TO ANOTHER SCREEN
-            alert('User Created! Click ok to login');
-            window.location = '../autho';
-        
+        if (result == "UsernameExistsException") {
+            console.log('User Name taken!');
+        } else if (result == "InvalidPasswordException") {
+            console.log('incorrect password strings');
         } else {
-            // UNABLE TO CREATE USER
+            var jResult = JSON.parse(result);
+            if (jResult['DeliveryMedium']==="EMAIL"){
+                console.log('CREATE SUCCES');
+            }
         }
-
         stopLoader();
     })
         .fail(function (a, b, c) {
