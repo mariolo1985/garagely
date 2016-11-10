@@ -59,7 +59,7 @@ body {
   border-top: none;
   border-right: none;
   border-bottom: 2px solid #999999;
-  font-size: 40px;
+  font-size: 28px;
   color: #999999;
   padding: 10px 0;
 }
@@ -74,8 +74,10 @@ body {
 }
 .loader.hide {
   opacity: 0;
+  display: none;
 }
 .loader.show {
+  display: block;
   opacity: 1;
   z-index: 10;
 }
