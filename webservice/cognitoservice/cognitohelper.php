@@ -3,6 +3,7 @@ require '../frameworks/aws/aws-autoloader.php';
 use Aws\CognitoIdentity\CognitoIdentityClient;
 use Aws\Sts\StsClient;
 use Aws\Credentials\CredentialProvider;
+use Aws\Exception\AwsException;
 
 class CognitoHelper
 {
@@ -39,6 +40,9 @@ class CognitoHelper
             ]);
 
             return $result;
+        }catch(AwsException $e)
+        {            
+            return $e->getAwsErrorCode();
         }catch(Exception $e){            
             return $e;
         }
@@ -64,16 +68,62 @@ class CognitoHelper
                     'PASSWORD' => $PW
                 ]
             ]);
-
             return $result;
-        }catch(Exception $e){
-            // TO-DO : HANDLE PASSING A BETTER RESPONSE TO WEB SERVICE
-            // CURRENTLY AUTHOUSER.PHP GETS 'E' IF NOT AUTHO'D
-            return $e->getMessage();
+        }catch(AwsException $e)
+        {            
+            return $e->getAwsErrorCode();
+        }
+        catch(Exception $e){
+            return $e;
         }
     }// end authuser
 
-    
+    // GETUSER 
+    function getUser($toke){
+        date_default_timezone_set('UTC');
+        try{
+            $sdk = new Aws\Sdk($this->sharedConfig);
+            $cognitoClient = $sdk->createCognitoIdentityProvider(
+                array(
+                    'credentials' => CredentialProvider::ini('default','/var/www/html/.aws/credentials')
+                )
+            );
+
+            $result = $cognitoClient->getUser([
+                'AccessToken' => $toke         
+            ]);
+
+            return $result;
+        }catch(AwsException $e)
+        {             
+            return $e->getAwsErrorCode();
+        }catch(Exception $e){
+            // TO DO - HANDLE ERROR BETTER
+            return "EXCEPTION";
+        }
+    }
+
+    // CONFIRM
+
+    function confirmUser($clientId, $code, $un){
+        try{
+            $sdk = new Aws\Sdk($this->sharedConfig);
+            $cognitoClient = $sdk->createCognitoIdentityProvider(
+                array(
+                    'credentials' => CredentialProvider::ini('default','/var/www/html/.aws/credentials')
+                )
+            );
+
+            $result = $cognitoClient->confirmSignUp([
+                'ClientId' => $clientId, 
+                'ConfirmationCode' => $code, 
+                'Username' => $un
+            ]);
+            return $result;
+        }catch(Exception $e){
+            return $e;
+        }
+    }// end cofirm user
 }
 
 ?>
