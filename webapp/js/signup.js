@@ -28,7 +28,8 @@ function signUp(username, pw, email) {
         if (typeof (des) != 'undefined') {
             // SAVE toke
             // MOVE ON TO ANOTHER SCREEN
-            window.location = '../';
+            alert('User Created! Click ok to login');
+            window.location = '../autho';
         
         } else {
             // UNABLE TO CREATE USER
