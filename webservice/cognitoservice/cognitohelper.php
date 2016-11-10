@@ -4,6 +4,8 @@ use Aws\CognitoIdentity\CognitoIdentityClient;
 use Aws\Sts\StsClient;
 use Aws\Credentials\CredentialProvider;
 use Aws\Exception\AwsException;
+use Aws\CognitoIdentityProvider\Exception\CognitoIdentityProviderException;
+
 
 class CognitoHelper
 {
@@ -40,11 +42,11 @@ class CognitoHelper
             ]);
 
             return $result;
-        }catch(AwsException $e)
-        {            
+        }catch(CognitoIdentityProviderException $e){
             return $e->getAwsErrorCode();
-        }catch(Exception $e){            
-            return $e;
+        }
+        catch(Exception $e){      
+            return $e->getMessage();
         }
         
     }// end createuser

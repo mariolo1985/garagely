@@ -10,8 +10,15 @@
             $cognitoHelper = new CognitoHelper();
             $result = $cognitoHelper->createUser($username,$pw,$email);
 
-            // return as json
-            echo json_encode($result['CodeDeliveryDetails']);
+            if ($result == 'UsernameExistsException') {
+                echo $result;
+            }else if ($result == 'InvalidPasswordException'){                    
+                echo $result;
+            }else{
+                echo json_encode($result['CodeDeliveryDetails']);
+            }
+      
+   
         }
     }catch(Exception $e){
         return $e->getMessage();
