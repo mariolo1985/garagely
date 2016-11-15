@@ -6,6 +6,9 @@
     <title>Garagely</title>
     <meta name='viewport' content='width=device-width,initial-scale=1' />
 
+    <link rel='stylesheet' href='/css/master.css'/>
+
+</style>
 </head>
 
 <body>
@@ -21,10 +24,60 @@
     <h1>Hello Garagely</h1>
 
 
+    <!-- MODAL -->
+    <section class='modal'>
+        <div class='modal-head'>
+            <span class='head-msg'>It appears you have not entered an address....(explain PRIMARY benefit)</span>
+            <button class='btn btn-icon btn-modal-close'>X</button>
+        </div>
+        <div class='modal-body'>
+            <div class='capture-address-body'>
+                <div class='input-row'>
+                    <label class='text-label'>Address Line 1:</label>
+                    <input type='text' class='txb txb-address-line1' />
+                </div>
+                <div class='input-row'>
+                    <label class='text-label'>Address Line 2:</label>
+                    <input type='text' class='txb txb-address-line2' />
+                </div>
+                <div class='input-row'>
+                    <label class='text-label'>City:</label>
+                    <input type='text' class='txb txb-city' />
+                </div>
+
+
+                <div class='input-row'>
+                    <button class='btn btn-select'>State</button>
+                    <!-- custom dropdown here -->
+                </div>
+                <div class='input-row'>
+                    <label class='text-label'>Zip</label>
+                    <input type='text' class='txb txb-zip' />
+                </div>
+                <div class='input-row btn-row'>
+                    <button class='btn'>Save</button>
+                    <button class='btn'>Not Now</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class='modal-footer'>
+
+        </div>
+    </section>
+
+    <div id='map'></div>
+
+
 
     <script src='js/jquery.js'></script>
     <script src='js/base.js'></script>
+    <script src='js/session.js'></script>
+    <script src='js/gmaps.js'></script>
     <script src='js/index.js'></script>
+    
+
 
 </body>
 

@@ -24,7 +24,7 @@ function login(username, pw) {
         switch (result) {
             case "UNCONFIRMED":
                 // SEND TO CONFIRMATION PAGE
-                console.log('UNCONFIRMED');
+                //console.log('UNCONFIRMED');
                 break;
 
             case "NOT_AUTHO":
@@ -38,7 +38,8 @@ function login(username, pw) {
                 if (typeof (toke) != 'undefined') {
                     // SAVE toke
                     window.location = '../';
-                    sessionStorage.setItem('toke', toke);
+                    var _sessionHelper = new SessionHelper();
+                    _sessionHelper.setToke(toke);                   
                 }
 
                 break;

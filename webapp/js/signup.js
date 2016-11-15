@@ -22,7 +22,7 @@ function signUp(username, pw, email) {
             }
         }
     ).done(function (result) {
-
+        console.log(result);// FIX ME
         if (result == "UsernameExistsException") {
             console.log('User Name taken!');
         } else if (result == "InvalidPasswordException") {
