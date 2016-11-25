@@ -1,5 +1,5 @@
 <?php
-    require 'cognitohelper.php';
+    include 'cognitohelper.php';
     $result = null;
 
     try{
@@ -15,6 +15,15 @@
             }else if ($result == 'InvalidPasswordException'){                    
                 echo $result;
             }else{
+                // add user to db (dbhelper.php) : -FIX ME 
+                include '../dbservice/dbhelper.php';
+                $_dbhelper = new DbHelper();
+                $conn = $_dbhelper->getDefaultConnection();
+
+                if ($conn !=null){
+                    $insertUserResult = $_dbhelper->insertUser($conn, $username, $email);                    
+                }
+
                 echo json_encode($result['CodeDeliveryDetails']);
             }
       
