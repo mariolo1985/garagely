@@ -93,7 +93,7 @@ class CognitoHelper
 
     // GETUSER 
         function getUser($un){
-            // *****IDK IF IT WORKS*****
+            // *****IDK IF IT WORKS*****/
         date_default_timezone_set('UTC');
 
         try{
