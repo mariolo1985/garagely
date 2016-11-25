@@ -1,14 +1,7 @@
-class SessionHelper{
-    constructor(){
+function getToke() {
+    return sessionStorage.getItem('toke');
+}
 
-    }
-
-    getToke(){
-        return sessionStorage.getItem('toke');
-    }
-
-    setToke(toke){
-        sessionStorage.setItem('toke',toke);
-    }
-
+function setToke(toke) {
+    sessionStorage.setItem('toke', toke);
 }
