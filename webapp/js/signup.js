@@ -30,7 +30,7 @@ function signUp(username, pw, email) {
         } else {
             var jResult = JSON.parse(result);
             if (jResult['DeliveryMedium']==="EMAIL"){
-                console.log('CREATE SUCCES');
+                window.location = '../';
             }
         }
         stopLoader();
