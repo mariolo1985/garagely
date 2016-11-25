@@ -1,7 +1,11 @@
-window.onload = function () {
+//import React from 'react';
+//import { render } from 'react-dom';
+//import { Modal, ModalHead, ModalBody, ModalFooter } from '../../build';
 
+
+window.onload = function() {
     try {
-        handleToke();
+        handleToke(showAddressModal);
         loadMapsApi();
 
     } catch (e) {
@@ -9,46 +13,16 @@ window.onload = function () {
     }
 }
 
-function handleToke() {
-    var _sessionHelper = new SessionHelper()
-    var toke = _sessionHelper.getToke();
-
-
-    if (toke != null) {
-        $.ajax({
-            url: 'http://54.201.24.33/cognitoservice/getuser.php',
-            type: 'POST',
-            data: {
-                toke: toke
-            }
-        }).done(function (result) {
-            //console.log(result);
-            var jResult = JSON.parse(result);
-            console.log(jResult);
-            jResult.forEach(function (item, i) {
-
-                switch (item['Name']) {
-                    case "custom:HasAddress":
-                        var attrVal = item['Value'];
-                        var hasAddress = attrVal === 'TRUE' ? true : false;
-                        if (!hasAddress) {
-                            //  POPUP ADDRESS
-                            console.log('no address');
-
-                        } else {
-                            // HAVE ADDRESS
-
-                        }
-                        break;
-
-                    default:
-                        break;
-                }
-
-            });
-
-        }).fail(function (a, b, c) {
-            console.log('failed');
-        })
+function showAddressModal(hasAddress) {
+    // CHECK IF WE HAVE USER ADDRESS
+    if (!hasAddress){
+        // PROMPT FOR ADDRESS
+        $('.settings-container').addClass('open');
     }
+    // add btn LISTENER
+    $('.btn-save-addres').click(function() {
+        var markLocation = getModalAddress();
+    });
+
+
 }
