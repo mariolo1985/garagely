@@ -37,9 +37,8 @@ function login(username, pw) {
                 var toke = jResult['AccessToken'];
                 if (typeof (toke) != 'undefined') {
                     // SAVE toke
-                    window.location = '../';
-                    var _sessionHelper = new SessionHelper();
-                    _sessionHelper.setToke(toke);                   
+                    window.location = '../';                    
+                    setToke(toke);                   
                 }
 
                 break;
