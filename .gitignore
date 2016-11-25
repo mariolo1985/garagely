@@ -2,3 +2,4 @@
 .aws
 node_modules
 .vscode
+build
