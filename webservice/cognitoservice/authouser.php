@@ -6,8 +6,6 @@ if ((isset($_POST['un'])) && (isset($_POST['pw']))){
     $un = $_POST['un'];
     $pw = $_POST['pw'];
 
-
-
     $result = $_cognitoHelper->authUser($un,$pw);
 
     switch ($result){
