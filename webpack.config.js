@@ -2,18 +2,20 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        review: [
-            './js/review.js'
-        ],
         index: [
-            './js/index.js'
+            './webapp/js/index.js'
+        ]
+        /*,
+        index: [
+            './webapp/js/index.js'
         ],
         history: [
-            './js/history.js'
+            './webapp/js/history.js'
         ]
+        */
     },
     output: {
-        path: __dirname + '/build/webpackd',
+        path: __dirname + '/webapp/js',
         filename: "[name]_bundle.js"
     },
     module: {
