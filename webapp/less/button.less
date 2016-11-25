@@ -1,19 +1,45 @@
 .btn{
-    height: 33px;
-    border-radius: 3px;
-    box-shadow: 0 0 3px 0 rgba(0,0,0,.5);
-    border: 1px solid #929292;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: bold;
-    width:100%;
-    cursor: pointer;
 
+    display: block;
+    width: 125px;
+    padding: 10px;
+    margin: 15px;
+    box-shadow: 0 0 3px 0 #999999;
+    border: 1px solid #999999;
+    border-radius: 3px;
+    text-decoration: none;
+    color: #FFFFFF;                                    
+    text-align: center;    
+
+    &:hover{
+        box-shadow: 0 0 3px 1px #999999;
+    }
+
+    // WIDTH 100% BUTTON
+    &.full-width{
+        width: 100%;
+        margin: 0;
+    }  
+
+    // DANGER DANGER MR ROB
     &.btn-cancel{
         background-color: #bf0000;
     }
     
+    // GOOD
     &.btn-success{
         background-color: #00ad45;
     }
+
+    &.btn-signup{
+        background-color: #0093e3;                    
+        
+
+        &:hover{
+            background-color: #00a5ff;
+        }
+    } 
+    &.btn-login{
+        background-color: #000000;
+    }  
 }
