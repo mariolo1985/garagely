@@ -91,36 +91,6 @@ class CognitoHelper
         }
     }// end authuser
 
-    // GETUSER 
-        function getUser($un){
-            // *****IDK IF IT WORKS*****/
-        date_default_timezone_set('UTC');
-
-        try{
-            $sdk = new Aws\Sdk($this->sharedConfig);
-            $cognitoClient = $sdk->createCognitoIdentityProvider(
-                array(
-                    'credentials' => CredentialProvider::ini('default','/var/www/html/.aws/credentials')
-                )
-            );
-
-            $result = $cognitoClient->adminGetUser([
-                'UserPoolId' => 'us-west-2_Z2gGGw2Am',
-                'Username' => $un,
-            ]);
-
-            return $result;
-        }catch(AwsException $e)
-        {             
-            //echo $e->getMessage();
-            return $e->getAwsErrorCode();
-        }catch(Exception $e){
-            // TO DO - HANDLE ERROR BETTER
-            //echo $e->getMessage();
-            return "EXCEPTION";
-        }
-    }
-
     function getUserByToke($toke){
         date_default_timezone_set('UTC');
         try{
@@ -147,7 +117,7 @@ class CognitoHelper
 
     // CONFIRM
 
-    function confirmUser($clientId, $code, $un){
+    function confirmUser($code, $un){
         try{
             $sdk = new Aws\Sdk($this->sharedConfig);
             $cognitoClient = $sdk->createCognitoIdentityProvider(
@@ -157,7 +127,7 @@ class CognitoHelper
             );
 
             $result = $cognitoClient->confirmSignUp([
-                'ClientId' => $clientId, 
+                'ClientId' =>'52d65o95sbnf1q9r49tpg349i9',
                 'ConfirmationCode' => $code, 
                 'Username' => $un
             ]);
