@@ -7,6 +7,25 @@
         & .input-row{
             margin: 25px;
 
+            & label{
+                display:block;
+                font-size: 48px;
+                margin-bottom: 15px;
+            }
+
+            & input{
+                display:block;
+                height: 50px;
+                width: 100%;                
+                border-left: none;
+                border-top: none;
+                border-right: none;
+                border-bottom: 2px solid #999999;
+                font-size: 28px;
+                color: #999999;
+                padding: 10px 5px;               
+            }
+            
             & .btn-wrapper{
                 float:left;
                 width: 50%;
@@ -15,26 +34,15 @@
                     padding: 15px;
                 }               
             }
-        }
 
-        & label{
-            display:block;
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
+            &.error{
 
-        & input{
-            display:block;
-            height: 50px;
-            width: 100%;
-            border-left: none;
-            border-top: none;
-            border-right: none;
-            border-bottom: 2px solid #999999;
-            font-size: 28px;
-            color: #999999;
-            padding: 10px 0;
-        }
+                & input{
+                    border-radius: 3px;
+                    border: 2px dashed #fc3f3f;
+                }
+            }
+        }// end input row
     }
 }
 
