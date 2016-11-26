@@ -1,6 +1,6 @@
-//import React from 'react';
-//import { render } from 'react-dom';
-//import { Modal, ModalHead, ModalBody, ModalFooter } from '../../build';
+import React from 'react';
+import { render } from 'react-dom';
+import { Nav } from '../../build';
 
 
 window.onload = function() {
@@ -20,9 +20,15 @@ function showAddressModal(hasAddress) {
         $('.settings-container').addClass('open');
     }
     // add btn LISTENER
-    $('.btn-save-addres').click(function() {
+    $('.btn-check-address').click(function() {
         var markLocation = getModalAddress();
     });
 
-
 }
+
+render(
+    (
+        <Nav/>
+    ),
+    document.getElementById('main-nav')
+)
