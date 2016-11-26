@@ -14,6 +14,7 @@ body {
   font-family: 'Helvetica Neue', Arial;
 }
 .main-content {
+  margin-top: 10%;
   height: 100%;
 }
 .btn {
@@ -27,6 +28,7 @@ body {
   text-decoration: none;
   color: #FFFFFF;
   text-align: center;
+  cursor: pointer;
 }
 .btn:hover {
   box-shadow: 0 0 3px 1px #999999;
@@ -77,19 +79,12 @@ body {
 .login-wrapper .input-wrapper .input-row {
   margin: 25px;
 }
-.login-wrapper .input-wrapper .input-row .btn-wrapper {
-  float: left;
-  width: 50%;
-}
-.login-wrapper .input-wrapper .input-row .btn-wrapper .padding-helper {
-  padding: 15px;
-}
-.login-wrapper .input-wrapper label {
+.login-wrapper .input-wrapper .input-row label {
   display: block;
   font-size: 48px;
   margin-bottom: 15px;
 }
-.login-wrapper .input-wrapper input {
+.login-wrapper .input-wrapper .input-row input {
   display: block;
   height: 50px;
   width: 100%;
@@ -99,7 +94,18 @@ body {
   border-bottom: 2px solid #999999;
   font-size: 28px;
   color: #999999;
-  padding: 10px 0;
+  padding: 10px 5px;
+}
+.login-wrapper .input-wrapper .input-row .btn-wrapper {
+  float: left;
+  width: 50%;
+}
+.login-wrapper .input-wrapper .input-row .btn-wrapper .padding-helper {
+  padding: 15px;
+}
+.login-wrapper .input-wrapper .input-row.error input {
+  border-radius: 3px;
+  border: 2px dashed #fc3f3f;
 }
 .loader {
   position: absolute;
@@ -241,6 +247,29 @@ body {
 .results-wrapper .results .result-row .user .user-desc-wrapper {
   float: left;
   width: 75%;
+}
+.settings-container .option-wrapper {
+  height: 100%;
+}
+.settings-container .capture-address-body .input-row {
+  padding: 15px;
+}
+.settings-container .capture-address-body .input-row .text-label {
+  display: block;
+  font-size: 18px;
+}
+.settings-container .capture-address-body .input-row .txb {
+  display: block;
+  width: 100%;
+  height: 33px;
+  line-height: 33px;
+  border-left: none;
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #999999;
+  margin-top: 25px;
+  font-size: 14px;
+  color: #444444;
 }
 @media (max-width: 678px) {
   .content-container .main-container {
