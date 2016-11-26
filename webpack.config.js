@@ -4,15 +4,16 @@ module.exports = {
     entry: {
         index: [
             './webapp/js/index.js'
-        ]
-        /*,
-        index: [
-            './webapp/js/index.js'
         ],
-        history: [
-            './webapp/js/history.js'
+        confirm:[
+            './webapp/js/confirm.js'
+        ],
+        autho: [
+            './webapp/js/autho.js'
+        ],
+        signup:[
+            './webapp/js/signup.js'
         ]
-        */
     },
     output: {
         path: __dirname + '/webapp/js',
@@ -30,7 +31,7 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+                'NODE_ENV': JSON.stringify("production")
             }
         })
     ]
