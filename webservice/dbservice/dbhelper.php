@@ -19,28 +19,28 @@ class DbHelper{
 
     // NEW USER
     function insertUser($conn, $username, $email){
-        try{
+        try{            
             $stmt = $conn->prepare('SET @_un := ?');// set username
             $stmt->bind_param('s',$username);
             $stmt->execute();
 
-            $stmt = $conn->prepare('SET @_email := ?');// SET EMAIL
+            $stmt = $conn->prepare('SET @_unemail := ?');// SET EMAIL
             $stmt->bind_param('s', $email);
             $stmt->execute();
 
-            $result = $conn->query('CALL pNewUser(@_un,@_email)');
+            $result = $conn->query('CALL pNewUser(@_un,@_unemail)');
             return $result;
             $result->free();
         }catch(Exception $e){
             echo $e->getMessage(); // for debugging 
         }
-        $conn->close();
+        //$conn->close();
     }// end insertUser
 
     // INSERT USER LOC
     function insertUserLoc($conn, $username,$addressline1, $addressline2, $city, $state, $zip, $latlng){
 
-        try{
+        try{           
             $stmt = $conn->prepare('SET @_un := ?');
             $stmt->bind_param('s',$username);
             $stmt->execute();
@@ -76,13 +76,13 @@ class DbHelper{
             echo $e->getMessage();
         }
 
-        $conn->close();
+        //$conn->close();
 
     }// end insertUserLoc
 
     // UPDATES USER LOC
     function updateUserLoc($conn, $username,$addressline1, $addressline2, $city, $state, $zip, $latlng){
-        try{
+        try{           
             $stmt = $conn->prepare('SET @_un := ?');
             $stmt->bind_param('s',$username);
             $stmt->execute();
@@ -118,7 +118,33 @@ class DbHelper{
             echo $e->getMessage();
         }
 
-        $conn->close();
+        //$conn->close();
+    }
+
+    // CHECK IF EMAIL EXIST
+    function checkEmail($conn, $email){
+        try{
+            $stmt = $conn->prepare('SET @_email := ?');
+            $stmt->bind_param('s', $email);
+            $stmt->execute();
+
+            $result = $conn->query('CALL pCheckEmail(@_email)');
+            $rows = array();
+            if ($result->num_rows === 0){                          
+                // NO RESULTS
+                $rows = null;
+            }else{
+                while($r = $result->fetch_assoc()){
+                    $rows[] = $r;
+                }
+            }
+            return $rows;
+            $result->free();
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }
+
+        //$conn->close();
     }
 }
 ?>
