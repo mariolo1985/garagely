@@ -18,7 +18,8 @@ function mapScriptLoaded() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: gpsLoc,
         zoom: 12,
-        disableDefaultUI:true
+        disableDefaultUI:true,
+        zoomControl: true
     });
 
 }
@@ -29,11 +30,11 @@ function getAddressLatLng(address) {
         {
             'address': address
         },
-        function(results, status) {
-            console.log(results);
+        function(results, status) {            
             if (status == 'OK') {
 
                 if (results.length == 1) {
+                    
                     // HAVE 1 RESULTS
                     getUserMarker(results[0].geometry.location);
                 } else if (results.length > 1) {
@@ -51,8 +52,7 @@ function getAddressLatLng(address) {
 
 // GETS THE ADDRESS AS latlng
 // MAY HAVE MULTIPLE RESULTS
-function getModalAddress() {
-    console.log('getmodaladdress');
+function getModalAddress() {    
     var addressLine1 = "",
         addressLine2 = "",
         city = "",
@@ -81,7 +81,7 @@ var userMarker;// IMPORTANT
 function getUserMarker(userLocationObj) {
     userMarker = new google.maps.Marker({
         position: userLocationObj,
-        map: map,
+        map: map,        
         title: 'Your Location',
         icon: {
             url: './images/car_marker.png',
@@ -89,11 +89,15 @@ function getUserMarker(userLocationObj) {
         }
     });
 
+    map.panTo(userLocationObj);
+
     var windowMarkup = "<div>Window here</div>";
     var infoWindow = new google.maps.InfoWindow({
         content: windowMarkup
     });
     userMarker.addListener('click', function() {
+        map.setZoom(17);
+        map.setCenter(this.position);
         infoWindow.open(map, userMarker);
     })
 
