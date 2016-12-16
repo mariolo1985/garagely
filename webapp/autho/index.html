@@ -5,15 +5,19 @@
     <meta charset="utf-8" />
     <meta name='viewport' content='width=device-width,initial-scale=1' />
     <title>Authentication...</title>
-    <link rel='stylesheet' href='../css/master.css' />
+    <link rel='stylesheet' href='../css/master.min.css' />
 </head>
 
 <body>
 
-    <div class='header-container' id='main-nav'>
+    <div class='landing-header-container clear'>
+        <a href='../map' class='header-signup-link'>Map</a>
+        <a href='../' class='header-signup-link'>Home</a>
     </div>
 
-    <section class='main-content'>
+    <section class='landing-content-container autho-content-container'>
+        <div class='autho-content-bg'>
+        </div>
         <div class='login-wrapper'>
             <div class='input-wrapper'>
                 <div class='input-row'>
@@ -36,6 +40,10 @@
                         </div>
                     </div>
                 </div>
+                <div class='input-row clear'>
+                    <div class='padding-helper'>
+                        <button class='btn full-width btn-fb-connect'>Connect with Facebook</button>
+                </div>
             </div>
         </div>
     </section>
@@ -45,6 +53,7 @@
     </div>
 
     <script src='../js/jquery.js'></script>
+    <script src='../js/base.js'></script>
     <script src='../js/session.js'></script>
     <script src='../js/autho_bundle.js'></script>
 

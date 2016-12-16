@@ -4,131 +4,43 @@
 <head>
     <meta charset='utf-8' />
     <meta name='viewport' content='width=device-width,initial-scale=1' />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Garagely</title>
 
+    <link rel='stylesheet' href='./css/font-awesome.css' />
+    <link rel='stylesheet' href='./css/master.min.css' />
 
-    <link rel='stylesheet' href='./css/master.css' />
-
-    </style>
 </head>
 
 <body>
-    <!-- REPLACE WITH MENU COMPONENT -->
-    <div class='header-container' id='main-nav'>
-    </div>
+    <!-- HEADER -->
+    <div id='landing-nav'></div>
 
     <!-- CONTENT -->
-    <section class='content-container clear open'>
-        <!-- MAP -->
-        <div class='map-container main-container'>
-            <div class='map'>
-                <div id='map'>
-
-                </div>
-            </div>
+    <section class='landing-content-container'>
+        <div class='content-bg-wrapper'>
         </div>
-        <!-- RESULTS -->
-        <div class='results-container clear'>
-            <div class='results-wrapper'>
-                <div class='results-heading'>
-                    <span class='results-heading-title'>Nearby Car Friends...</span>
-                </div>
-                <div class='results'>
-                    <div class='result-row'>
-                        <div class='user clear'>
-                            <div class='user-image-wrapper'>
-                                <img src='./images/user_placeholder.png' class='user-image' />
-                            </div>
-                            <div class='user-desc-wrapper'>
-                                User Description Here
-                            </div>
-                        </div>
-                    </div>
-                    <div class='result-row'>
-                        <div class='user clear'>
-                            <div class='user-image-wrapper'>
-                                <img src='./images/user_placeholder.png' class='user-image' />
-                            </div>
-                            <div class='user-desc-wrapper'>
-                                User Description Here
-                            </div>
-                        </div>
-                    </div>
-                    <div class='result-row'>
-                        <div class='user clear'>
-                            <div class='user-image-wrapper'>
-                                <img src='./images/user_placeholder.png' class='user-image' />
-                            </div>
-                            <div class='user-desc-wrapper'>
-                                User Description Here
-                            </div>
-                        </div>
-                    </div>
-                    <div class='result-row'>
-                        <div class='user clear'>
-                            <div class='user-image-wrapper'>
-                                <img src='./images/user_placeholder.png' class='user-image' />
-                            </div>
-                            <div class='user-desc-wrapper'>
-                                User Description Here
-                            </div>
-                        </div>
-                    </div>
-                    <div class='result-row'>
-                        <div class='user clear'>
-                            <div class='user-image-wrapper'>
-                                <img src='./images/user_placeholder.png' class='user-image' />
-                            </div>
-                            <div class='user-desc-wrapper'>
-                                User Description Here
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class='content-wrapper'>
+            <div class='intro-purpose'>
+                <span class='intro-title'>Welcome to Garagely</span>
+                <span class='intro-desc'>Built By And For The Automotive Community</span>
+                <span class='intro-desc'>To Find and Connect Each Other</span>
             </div>
-        </div>
-        <!-- SETTINGS -->
-        <div class='settings-container'>
-            <!-- ADDRESS OPTION -->
-            <div class='option-address-wrapper option-wrapper'>
-                <div class='capture-address-body option-body'>
-                    <div class='input-row'>
-                        <label class='text-label'>Address Line 1:</label>
-                        <input type='text' class='txb txb-address-line1' />
-                    </div>
-                    <div class='input-row'>
-                        <label class='text-label'>Address Line 2:</label>
-                        <input type='text' class='txb txb-address-line2' />
-                    </div>
-                    <div class='input-row'>
-                        <label class='text-label'>City:</label>
-                        <input type='text' class='txb txb-city' />
-                    </div>
 
-
-                    <div class='input-row'>
-                        <button class='btn btn-select'>State</button>
-                        <!-- custom dropdown here -->
-                    </div>
-                    <div class='input-row'>
-                        <label class='text-label'>Zip</label>
-                        <input type='text' class='txb txb-zip' />
-                    </div>
-                    <div class='input-row btn-row'>
-                        <button class='btn btn-signup'>Not Now</button>
-                        <button class='btn btn-success btn-check-address'>Check Address</button>
-                    </div>
-                </div>
+            <div class='search-label'>Search a location below to engage with your community</div>
+            <div class='search-box'>
+                <input class='input-search' type='text' placeholder='Enter An Address Here' />
+                <button class='btn-input-search'>
+                    <i class='fa fa-search'></i>
+                </button>
             </div>
         </div>
     </section>
 
+
+
     <script src='./js/jquery.js'></script>
     <script src='./js/base.js'></script>
-    <script src='./js/session.js'></script>
-    <script src='./js/gmaps.js'></script>
-    <script src='./js/index_bundle.js'></script>
+    <script src='./js/landing_bundle.js'></script>
 
 
 </body>

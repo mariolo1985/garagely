@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width,initial-scale=1' />
+    <title>Garagely</title>
+
+
+    <link rel='stylesheet' href='../css/master.min.css' />
+</head>
+
+<body>
+
+    <!-- REPLACE WITH MENU COMPONENT -->
+    <section class='landing-header-container clear'>
+        <a href='../map' class='header-signup-link'>Map</a>
+    </section>
+
+    <!-- CONTENT -->
+    <section class='landing-content-container profile-content-container clear'>
+        <!-- BG -->
+        <div class='profile-bg-wrapper'>
+        </div>
+        <!-- login -->
+        <div class='login-wrapper'>
+            <div class='input-wrapper'>
+                <div class='input-row'>
+                    <label class='text-label'>Address Line 1:</label>
+                    <input type='text' class='txb txb-address-line1' />
+                </div>
+                <div class='input-row'>
+                    <label class='text-label'>Address Line 2:</label>
+                    <input type='text' class='txb txb-address-line2' />
+                </div>
+                <div class='input-row'>
+                    <label class='text-label'>City:</label>
+                    <input type='text' class='txb txb-city' />
+                </div>
+                <div class='input-row'>
+                    <button class='btn btn-select'>State</button>
+                    <!-- custom dropdown here -->
+                </div>
+                <div class='input-row'>
+                    <label class='text-label'>Zip</label>
+                    <input type='text' class='txb txb-zip' />
+                </div>
+                <div class='input-row btn-row clear'>
+                    <div class='btn-wrapper'>
+                        <div class='padding-helper'>
+                            <button class='btn full-width btn-cancel' tabindex='-1'>Cancel</button>
+                        </div>
+                    </div>
+                    <div class='btn-wrapper'>
+                        <div class='padding-helper'>
+                            <button class='btn full-width btn-update-address btn-success' tabindex='-1'>Update Address</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src='../js/jquery.js'></script>
+    <script src='../js/base.js'></script>
+    <script src='../js/profile_bundle.js'></script>
+
+</body>
+
+</html>

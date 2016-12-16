@@ -5,14 +5,21 @@
     <meta charset="utf-8" />
     <meta name='viewport' content='width=device-width,initial-scale=1' />
     <title>Sign Up...</title>
-    <link rel='stylesheet' href='../css/master.css' />
+    <link rel='stylesheet' href='../css/master.min.css' />
 </head>
 
 <body>
-    <div class='header-container' id='main-nav'>
-    </div>
+    <section class='landing-header-container clear'>
+        <a href='../autho' class='header-signup-link'>Login</a>
+        <a href='../map' class='header-signup-link'>Map</a>        
+    </section>
 
-    <section class='main-content'>
+    <section class='landing-content-container signup-content-container'>
+        <!-- BG -->
+        <div class='signup-bg-wrapper'>
+        </div>
+
+        <!-- login -->
         <div class='login-wrapper'>
             <div class='input-wrapper'>
                 <div class='input-row'>
@@ -39,6 +46,11 @@
                         </div>
                     </div>
                 </div>
+                <div class='input-row clear'>
+                    <div class='padding-helper'>
+                        <button class='btn full-width btn-fb-connect'>Sign Up with Facebook</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -48,6 +60,7 @@
     </div>
 
     <script src='../js/jquery.js'></script>
+    <script src='../js/base.js'></script>
     <script src='../js/signup_bundle.js'></script>
 </body>
 

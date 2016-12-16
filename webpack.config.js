@@ -5,14 +5,20 @@ module.exports = {
         index: [
             './webapp/js/index.js'
         ],
-        confirm:[
+        confirm: [
             './webapp/js/confirm.js'
         ],
         autho: [
             './webapp/js/autho.js'
         ],
-        signup:[
+        signup: [
             './webapp/js/signup.js'
+        ],
+        landing: [
+            './webapp/js/landing.js'
+        ],
+        profile: [
+            './webapp/js/profile.js'
         ]
     },
     output: {
@@ -31,7 +37,7 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify("production")
+                'NODE_ENV': JSON.stringify('development')//JSON.stringify("production")
             }
         })
     ]
