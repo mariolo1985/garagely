@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(177);
+	module.exports = __webpack_require__(178);
 
 
 /***/ },
@@ -21526,7 +21526,8 @@
 
 /***/ },
 /* 176 */,
-/* 177 */
+/* 177 */,
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21542,27 +21543,15 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	window.onload = function () {
-	    try {
-	        // LOAD FB
-	        loadFB();
+	    loadFB();
+	    event_input();
 
-	        handleToke(showAddressModal); // HANDLE TOKEN
-	        loadMapsApiWithCurrentLoc();
-
-	        $('.btn-search-map').click(function () {
-	            var address = $('.txb-search').val();
-	            var latLng = getAddressLatLng(address, getUserMarker);
-	        });
-	    } catch (e) {
-	        console.log(e);
-	    }
+	    $('.btn-input-search').click(function () {
+	        //handleSearch(0,false);
+	    });
 	};
-
-	// FACEBOOK
 	window.fbAsyncInit = function () {
 	    initFB();
-
-	    // CHECK IF FB IS SIGNED IN 
 	    getFBStatus(checkLoadingStatus);
 	};
 
@@ -21584,7 +21573,7 @@
 	                    // HAVE USER JSON
 	                    var user = buildFBUserObj(result);
 	                    // CONNECTED
-	                    (0, _reactDom.render)(_react2.default.createElement(_build.Nav, { isAutho: true, user: user }), document.getElementById('main-nav'));
+	                    (0, _reactDom.render)(_react2.default.createElement(_build.LandingNav, { isAutho: true, user: user }), document.getElementById('landing-nav'));
 	                }
 	            }).fail(function (a, b, c) {
 	                console.log(a);
@@ -21596,21 +21585,26 @@
 
 	        default:
 	            // NOT AUTHO OR NOT CONNECTED 
-	            (0, _reactDom.render)(_react2.default.createElement(_build.Nav, { isAutho: false }), document.getElementById('main-nav'));
+	            (0, _reactDom.render)(_react2.default.createElement(_build.LandingNav, { isAutho: false }), document.getElementById('landing-nav'));
 	            break;
 	    }
 	}
 
-	function showAddressModal(hasAddress) {
-	    // CHECK IF WE HAVE USER ADDRESS
-	    if (!hasAddress) {
-	        // PROMPT FOR ADDRESS
-	        $('.settings-container').addClass('open');
-	    }
-	    // add btn LISTENER
-	    $('.btn-check-address').click(function () {
-	        var markLocation = getModalAddress();
+	// INPUT EVENTS
+	function event_input() {
+	    $('.input-search').on('keypress', function (e) {
+	        var txbSearch = $(this);
+	        var txbVal = txbSearch.val();
+	        if (e.keyCode == '13' && txbVal != '') {
+	            console.log(txbVal);
+	            // CALL SERVICE TO QUERY ADDRESS LOCATION OBJ
+	            getAddressLatLng(txbVal, locationSearchCallback);
+	        }
 	    });
+	}
+
+	function locationSearchCallback(result) {
+	    console.log(result);
 	}
 
 /***/ }

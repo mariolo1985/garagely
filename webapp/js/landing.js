@@ -1,35 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Nav } from '../../build';
-
+import { LandingNav } from '../../build';
 
 window.onload = function () {
-    try {
-        // LOAD FB
-        loadFB();
+    loadFB();
+    event_input();
 
-        handleToke(showAddressModal);// HANDLE TOKEN
-        loadMapsApiWithCurrentLoc();
+    $('.btn-input-search').click(function () {
+        //handleSearch(0,false);
+    });
 
-        $('.btn-search-map').click(function () {
-            var address = $('.txb-search').val();
-            var latLng = getAddressLatLng(address, getUserMarker);
-
-        });
-
-    } catch (e) {
-        console.log(e);
-    }
 }
-
-
-// FACEBOOK
 window.fbAsyncInit = function () {
     initFB();
-
-    // CHECK IF FB IS SIGNED IN 
     getFBStatus(checkLoadingStatus);
-
 }
 
 function checkLoadingStatus(loginStatus) {
@@ -52,9 +36,9 @@ function checkLoadingStatus(loginStatus) {
                     // CONNECTED
                     render(
                         (
-                            <Nav isAutho={true} user={user} />
+                            <LandingNav isAutho={true} user={user} />
                         ),
-                        document.getElementById('main-nav')
+                        document.getElementById('landing-nav')
                     );
                 }
             }).fail(function (a, b, c) {
@@ -69,23 +53,28 @@ function checkLoadingStatus(loginStatus) {
             // NOT AUTHO OR NOT CONNECTED 
             render(
                 (
-                    <Nav isAutho={false} />
+                    <LandingNav isAutho={false} />
                 ),
-                document.getElementById('main-nav')
+                document.getElementById('landing-nav')
             );
             break;
     }
 }
 
-function showAddressModal(hasAddress) {
-    // CHECK IF WE HAVE USER ADDRESS
-    if (!hasAddress) {
-        // PROMPT FOR ADDRESS
-        $('.settings-container').addClass('open');
-    }
-    // add btn LISTENER
-    $('.btn-check-address').click(function () {
-        var markLocation = getModalAddress();
-    });
 
+// INPUT EVENTS
+function event_input() {
+    $('.input-search').on('keypress', function (e) {
+        var txbSearch = $(this);
+        var txbVal = txbSearch.val();
+        if ((e.keyCode == '13') && (txbVal != '')) {
+            console.log(txbVal);
+            // CALL SERVICE TO QUERY ADDRESS LOCATION OBJ
+            getAddressLatLng(txbVal, locationSearchCallback);
+        }
+    });
+}
+
+function locationSearchCallback(result) {
+    console.log(result);
 }

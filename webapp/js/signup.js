@@ -5,18 +5,71 @@ import { Nav } from '../../build';
 /* TO DO
     - HANDLE USERNAME TAKEN, BAD PW..ETC ERRORS 
 */
-window.onload = function() {
+window.onload = function () {
+    loadFB();
     // EVENTS
     event_input();
     event_btnsignup();
 
-    $('.btn-cancel').click(function() {
+    $('.btn-cancel').click(function () {
         window.location = '../';
+    });
+
+
+    $('.btn-fb-connect').click(function () {
+        FB.login(function (signupResults) {
+            console.log(signupResults);
+            if (signupResults.authResponse) {
+                console.log("autho'd app");
+                $.ajax({
+                    url: '../facebook/user.php',
+                    type: 'POST',
+                    data: {
+                        Filter: 'SET_TOKEN_FROM_JS'
+                    }
+                }).done(function (result) {
+                    if (result != 'ERROR') {
+                        console.log(result);
+                    } else {
+
+                    }
+                });
+            } else {
+                console.log('Cancel');
+
+            }
+        },
+            {
+                scope: 'public_profile,email'
+            });
     });
 }
 
+
+// ON FB SCRIPT LOAD
+window.fbAsyncInit = function () {
+    initFB();// init fb api
+    getFBStatus(checkLoadingStatus);
+};
+
+function checkLoadingStatus(loginStatus) {
+    console.log('Loading Status: ');
+    console.log(loginStatus);
+    switch (loginStatus.status) {
+        case "connected":
+            // REDIRECT TO MAPS
+            //window.location = '../map';
+            break;
+
+        default:
+            // NOT AUTHO OR NOT CONNECTED 
+
+            break;
+    }
+}
+
 function event_input() {
-    $('.input-login').on('keypress', function(e) {
+    $('.input-login').on('keypress', function (e) {
         var thisTxb = $(this);
         if (thisTxb.val() != "") {
             // NOT EMPTY - CHECK IF PREVIOUSLY ERROR            
@@ -32,7 +85,7 @@ function event_input() {
 }
 
 function event_btnsignup() {
-    $('.btn-signup').click(function() {
+    $('.btn-signup').click(function () {
         initSignup();
     });
 }
@@ -70,12 +123,13 @@ function initSignup() {
     }
 
 }
+
 function signUp(username, pw, email) {
     startLoader();
     $.ajax(
         {
             type: "POST",
-            url: "http://54.201.24.33/cognitoservice/createuser.php",
+            url: "../cognitoservice/createuser.php",
             data:
             {
                 un: username,
@@ -83,8 +137,8 @@ function signUp(username, pw, email) {
                 email: email
             }
         }
-    ).done(function(result) {
-        
+    ).done(function (result) {
+
         if (result == "EmailExistException") {
             console.log('Email Already Exist');
         } else if (result == "UsernameExistsException") {
@@ -99,7 +153,7 @@ function signUp(username, pw, email) {
         }
         stopLoader();
     })
-        .fail(function(a, b, c) {
+        .fail(function (a, b, c) {
             console.log(a);
             console.log(b);
             console.log(c);
@@ -118,9 +172,3 @@ function stopLoader() {
 
 
 // RENDERS
-render(
-    (
-        <Nav />
-    ),
-    document.getElementById('main-nav')
-)

@@ -3,18 +3,58 @@ import { render } from 'react-dom';
 import { Nav } from '../../build';
 
 
-window.onload = function() {
+window.onload = function () {
+    loadFB();
     // EVENTS
     event_input();
     event_btnlogin();
 
-    $('.btn-cancel').click(function() {
+    $('.btn-cancel').click(function () {
         window.location = '../';
     });
 
 }
+
+// ON FB SCRIPT LOAD
+window.fbAsyncInit = function () {
+    initFB();// init fb api
+    // FIX ME - SEE IF ALREADY LOGGED INTO FB 
+
+    //BUT FOR NOW ---->
+    getFBStatus(checkLoadingStatus)
+};
+
+function checkLoadingStatus(loginStatus) {
+    console.log('Loading Status: ' + loginStatus);
+    switch (loginStatus.status) {
+        case "connected":
+            // NEED TO CALL FACEBOOK SERVICE
+            $.ajax({
+                url: '../facebook/user.php',
+                type: 'POST',
+                data: {
+                    Filter: 'SET_TOKEN_FROM_JS'
+                }
+            }).done(function (result) {
+                console.log('SET TOKE RESULT: ' + result);
+                if (result != 'ERROR') {
+                    // REDIRECT TO MAPS
+                }
+            }).fail(function (a, b, c) {
+                console.log(a);
+                console.log(b);
+                console.log(c);
+            });
+
+            break;
+
+        default:
+            // NOT AUTHO OR NOT CONNECTED 
+            break;
+    }
+}
 function event_input() {
-    $('.input-login').on('keypress', function(e) {
+    $('.input-login').on('keypress', function (e) {
         var thisTxb = $(this);
         if (thisTxb.val() != "") {
             // NOT EMPTY - CHECK IF PREVIOUSLY ERROR            
@@ -30,8 +70,13 @@ function event_input() {
 }
 
 function event_btnlogin() {
-    $('.btn-login').click(function() {
+    $('.btn-login').click(function () {
         initLogin();
+    });
+
+    $('.btn-fb-connect').click(function () {
+        // FIX ME - FAIL REDIRECT URL
+        fbLogin(true, '../map', false, '');
     });
 }
 
@@ -62,14 +107,14 @@ function login(username, pw) {
     $.ajax(
         {
             type: "POST",
-            url: "http://54.201.24.33/cognitoservice/authouser.php",
+            url: "../cognitoservice/authouser.php",
             data:
             {
                 un: username,
                 pw: pw
             }
         }
-    ).done(function(result) {
+    ).done(function (result) {
         console.log(result);
         switch (result) {
             case "UNCONFIRMED":
@@ -98,7 +143,7 @@ function login(username, pw) {
 
         stopLoader();
     })
-        .fail(function(a, b, c) {
+        .fail(function (a, b, c) {
             stopLoader();
             console.log(a);
             console.log(b);
@@ -115,9 +160,3 @@ function stopLoader() {
 }
 
 //  RENDERS
-render(
-    (
-        <Nav/>
-    ),
-    document.getElementById('main-nav')
-)

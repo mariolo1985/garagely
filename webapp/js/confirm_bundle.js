@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(177);
+	module.exports = __webpack_require__(176);
 
 
 /***/ },
@@ -21525,8 +21525,7 @@
 	exports.default = LandingNav;
 
 /***/ },
-/* 176 */,
-/* 177 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21541,77 +21540,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	window.onload = function () {
-	    try {
-	        // LOAD FB
-	        loadFB();
-
-	        handleToke(showAddressModal); // HANDLE TOKEN
-	        loadMapsApiWithCurrentLoc();
-
-	        $('.btn-search-map').click(function () {
-	            var address = $('.txb-search').val();
-	            var latLng = getAddressLatLng(address, getUserMarker);
-	        });
-	    } catch (e) {
-	        console.log(e);
-	    }
-	};
-
-	// FACEBOOK
-	window.fbAsyncInit = function () {
-	    initFB();
-
-	    // CHECK IF FB IS SIGNED IN 
-	    getFBStatus(checkLoadingStatus);
-	};
-
-	function checkLoadingStatus(loginStatus) {
-	    console.log('Loading Status: ');
-	    console.log(loginStatus);
-	    switch (loginStatus.status) {
-	        case "connected":
-	            // NEED TO CALL FACEBOOK SERVICE
-	            $.ajax({
-	                url: '../facebook/user.php',
-	                type: 'POST',
-	                data: {
-	                    Filter: 'SET_TOKEN_FROM_JS'
-	                }
-	            }).done(function (result) {
-	                console.log('SET TOKE RESULT: ' + result);
-	                if (result != 'ERROR') {
-	                    // HAVE USER JSON
-	                    var user = buildFBUserObj(result);
-	                    // CONNECTED
-	                    (0, _reactDom.render)(_react2.default.createElement(_build.Nav, { isAutho: true, user: user }), document.getElementById('main-nav'));
-	                }
-	            }).fail(function (a, b, c) {
-	                console.log(a);
-	                console.log(b);
-	                console.log(c);
-	            });
-
-	            break;
-
-	        default:
-	            // NOT AUTHO OR NOT CONNECTED 
-	            (0, _reactDom.render)(_react2.default.createElement(_build.Nav, { isAutho: false }), document.getElementById('main-nav'));
-	            break;
-	    }
-	}
-
-	function showAddressModal(hasAddress) {
-	    // CHECK IF WE HAVE USER ADDRESS
-	    if (!hasAddress) {
-	        // PROMPT FOR ADDRESS
-	        $('.settings-container').addClass('open');
-	    }
-	    // add btn LISTENER
-	    $('.btn-check-address').click(function () {
-	        var markLocation = getModalAddress();
-	    });
-	}
+	(0, _reactDom.render)(_react2.default.createElement(_build.Nav, null), document.getElementById('main-nav'));
 
 /***/ }
 /******/ ]);
