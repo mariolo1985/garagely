@@ -1,0 +1,44 @@
+.star:before{
+    font-size: 24px;
+    color: #FC913A;
+}
+
+.star-wrapper{
+    float: left;
+    width: 25px;
+    cursor: pointer;
+
+    &.full{
+        & .star-full{
+            display: block;
+        }
+        & .star-half{
+            display: none;
+        }
+        & .star-empty{
+            display: none;
+        }
+    }
+    &.half{
+        & .star-full{
+            display: none;
+        }
+        & .star-half{
+            display: block;
+        }
+        & .star-empty{
+            display: none;
+        }
+    }
+    &.empty{
+        & .star-full{
+            display: none;
+        }
+        & .star-half{
+            display: none;
+        }
+        & .star-empty{
+            display: full;
+        }
+    }
+}
