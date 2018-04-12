@@ -19,6 +19,9 @@ module.exports = {
         ],
         profile: [
             './webapp/js/profile.js'
+        ],
+        test: [
+            './webapp/js/test.js'
         ]
     },
     output: {

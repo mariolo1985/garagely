@@ -44,7 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(179);
+	module.exports = __webpack_require__(180);
 
 
 /***/ },
@@ -21353,7 +21353,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.LandingNav = exports.Nav = undefined;
+	exports.Ratings = exports.LandingNav = exports.Nav = undefined;
 
 	var _Nav2 = __webpack_require__(174);
 
@@ -21363,12 +21363,17 @@
 
 	var _LandingNav3 = _interopRequireDefault(_LandingNav2);
 
+	var _ReviewRatings = __webpack_require__(176);
+
+	var _ReviewRatings2 = _interopRequireDefault(_ReviewRatings);
+
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { default: obj };
 	}
 
 	exports.Nav = _Nav3.default;
 	exports.LandingNav = _LandingNav3.default;
+	exports.Ratings = _ReviewRatings2.default;
 
 /***/ },
 /* 174 */
@@ -21525,10 +21530,162 @@
 	exports.default = LandingNav;
 
 /***/ },
-/* 176 */,
+/* 176 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () {
+	    function defineProperties(target, props) {
+	        for (var i = 0; i < props.length; i++) {
+	            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+	        }
+	    }return function (Constructor, protoProps, staticProps) {
+	        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+	    };
+	}();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { default: obj };
+	}
+
+	function _classCallCheck(instance, Constructor) {
+	    if (!(instance instanceof Constructor)) {
+	        throw new TypeError("Cannot call a class as a function");
+	    }
+	}
+
+	function _possibleConstructorReturn(self, call) {
+	    if (!self) {
+	        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+	}
+
+	function _inherits(subClass, superClass) {
+	    if (typeof superClass !== "function" && superClass !== null) {
+	        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+	    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+	}
+
+	var ReviewRatings = function (_Component) {
+	    _inherits(ReviewRatings, _Component);
+
+	    function ReviewRatings(props) {
+	        _classCallCheck(this, ReviewRatings);
+
+	        var _this = _possibleConstructorReturn(this, (ReviewRatings.__proto__ || Object.getPrototypeOf(ReviewRatings)).call(this, props));
+
+	        _this.componentDidMount = _this.componentDidMount.bind(_this);
+	        _this.displayRating = _this.displayRating.bind(_this);
+	        return _this;
+	    }
+
+	    _createClass(ReviewRatings, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var funcCheckRating = this.checkRating;
+
+	            $('.star-wrapper').hover(function () {
+	                funcCheckRating(this);
+	            });
+	            $('.star-wrapper').click(function () {
+	                funcCheckRating(this);
+	            });
+	        }
+	    }, {
+	        key: 'checkRating',
+	        value: function checkRating(starWrapper) {
+	            var sWrapper = $(starWrapper),
+	                fullStars,
+	                emptyStars,
+	                starCount,
+	                sVal;
+
+	            sVal = sWrapper.siblings('.rating-value');
+	            fullStars = sWrapper.prevAll().addBack();
+	            starCount = fullStars.length;
+	            fullStars.each(function (index, item) {
+	                $(item).removeClass('empty');
+	                $(item).removeClass('half');
+	                $(item).addClass('full');
+	            });
+	            sVal.html(starCount);
+
+	            emptyStars = sWrapper.nextAll();
+	            emptyStars.each(function (index, item) {
+	                $(item).removeClass('full');
+	                $(item).removeClass('half');
+	                $(item).addClass('empty');
+	            });
+	        }
+	    }, {
+	        key: 'displayRating',
+	        value: function displayRating() {
+	            if (this.props.rating) {
+	                var rating = this.props.rating;
+	                var ratingArr = ['full', 'full', 'full', 'empty', 'empty'];
+
+	                if (rating > 4) {
+	                    // 4.5
+	                    ratingArr = ['full', 'full', 'full', 'full', 'half'];
+	                } else if (rating > 3.5) {
+	                    // 4
+	                    ratingArr = ['full', 'full', 'full', 'full', 'empty'];
+	                } else if (rating > 3) {
+	                    // 3.5
+	                    ratingArr = ['full', 'full', 'full', 'half', 'empty'];
+	                } else if (rating > 2.5) {
+	                    // 3
+	                    ratingArr = ['full', 'full', 'full', 'empty', 'empty'];
+	                } else if (rating > 2) {
+	                    // 2.5
+	                    ratingArr = ['full', 'full', 'half', 'empty', 'empty'];
+	                } else if (rating > 1.5) {
+	                    // 2
+	                    ratingArr = ['full', 'full', 'empty', 'empty', 'empty'];
+	                } else if (rating > 1) {
+	                    // 1.5
+	                    ratingArr = ['full', 'half', 'empty', 'empty', 'empty'];
+	                } else {
+	                    ratingArr = ['full', 'empty', 'empty', 'empty', 'empty'];
+	                }
+	                return ratingArr;
+	            } else {
+	                return ['full', 'full', 'full', 'empty', 'empty']; // DEFAULT
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var ratingArr = this.displayRating();
+	            return _react2.default.createElement('div', { className: 'ratings-container clear' }, ratingArr.map(function (item, i) {
+	                var starClass = "star-wrapper " + item;
+	                return _react2.default.createElement('div', { className: starClass, key: i }, _react2.default.createElement('i', { className: 'star star-full fa fa-star' }), _react2.default.createElement('i', { className: 'star star-half fa fa-star-half-o' }), _react2.default.createElement('i', { className: 'star star-empty fa fa-star-o' }));
+	            }), _react2.default.createElement('div', { className: 'rating-value' }));
+	        } // end render
+
+	    }]);
+
+	    return ReviewRatings;
+	}(_react.Component);
+
+	exports.default = ReviewRatings;
+
+/***/ },
 /* 177 */,
 /* 178 */,
-/* 179 */
+/* 179 */,
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21543,7 +21700,121 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	window.onload = function () {};
+	var _address;
+	window.onload = function () {
+	    loadMapsApi();
+	    $('.btn-update-address').click(function () {
+
+	        var address = getAddress();
+	        if (address.Status == "ERROR") {
+	            // RAISE ERROR
+	            initUpdateAddress(); //fix me
+	        } else {
+	            // MAPS
+	            initUpdateAddress();
+	        }
+	    });
+	};
+
+	function getAddress() {
+
+	    var address = {
+	        Status: "",
+	        AddressLine1: "",
+	        AddressLine2: "",
+	        City: "",
+	        State: "",
+	        Zip: ""
+	    };
+	    var hasEmpty = false;
+
+	    var line1 = $('.txb-address-line1').val();
+	    if (line1 != "") {
+	        address.AddressLine1 = line1;
+	    } else {
+	        hasEmpty = true;
+	    }
+
+	    var line2 = $('.txb-address-line2').val();
+	    if (line2 != "") {
+	        address.AddressLine2 = line2;
+	    }
+
+	    var city = $('.txb-city').val();
+	    if (city != "") {
+	        address.City = city;
+	    } else {
+	        hasEmpty = true;
+	    }
+
+	    // HANDLE STATE 
+	    var state = ""; // FIX ME
+	    if (state != "") {
+	        address.State = state;
+	    } else {
+	        hasEmpty = true;
+	    }
+
+	    var zip = $('.txb-zip').val();
+	    if (zip != "") {
+	        address.Zip = zip;
+	    } else {
+	        hasEmpty = true;
+	    }
+
+	    // EMPTY CHECK
+	    if (hasEmpty) {
+	        address.Status = "ERROR";
+	    } else {
+	        address.Status = "SUCCESS";
+	    }
+
+	    _address = address;
+	    return address;
+	}
+
+	function setGeo(geometry) {
+	    console.log(geometry);
+	    //if (geometry)
+	}
+
+	function initUpdateAddress() {
+	    if (google != null) {
+	        var addressObj = _address;
+	        getAddressLatLng(addressObj, setGeo);
+	    }
+	}
+
+	function loadMapsApi() {
+	    var p = document.location.protocol;
+	    var s = document.createElement('script');
+	    s.setAttribute('src', p + '//maps.googleapis.com/maps/api/js?key=AIzaSyDOf-gDXTDEamqvKeUe913CgCrHBJhtE7I');
+	    s.setAttribute('async', '');
+	    s.setAttribute('defer', '');
+	    document.body.appendChild(s);
+	}
+
+	function getAddressLatLng(address, callback) {
+	    var addressStr = address.AddressLine1 + " " + address.AddressLine2 + " " + address.City + " " + address.State + " " + address.Zip;
+
+	    var mGeocoder = new google.maps.Geocoder();
+	    mGeocoder.geocode({
+	        'address': addressStr
+	    }, function (results, status) {
+	        switch (status) {
+	            case "OK":
+	                callback(results);
+	                break;
+
+	            case "ZERO_RESULTS":
+	                break;
+
+	            default:
+	                // ERROR LOGGING WITH STATUS
+	                break;
+	        }
+	    });
+	}
 
 /***/ }
 /******/ ]);

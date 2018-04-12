@@ -372,9 +372,7 @@ body {
   display: block;
   width: 125px;
   padding: 10px;
-  margin: 15px;
-  box-shadow: 0 0 3px 0 #999999;
-  border: 1px solid #999999;
+  border: none;
   text-decoration: none;
   color: #FFFFFF;
   text-align: center;
@@ -413,4 +411,43 @@ body {
 }
 .btn-fb-connect {
   background-color: #3b5998;
+}
+.star:before {
+  font-size: 24px;
+  color: #FC913A;
+}
+.star-wrapper {
+  float: left;
+  width: 25px;
+  cursor: pointer;
+}
+.star-wrapper.full .star-full {
+  display: block;
+}
+.star-wrapper.full .star-half {
+  display: none;
+}
+.star-wrapper.full .star-empty {
+  display: none;
+}
+.star-wrapper.half .star-full {
+  display: none;
+}
+.star-wrapper.half .star-half {
+  display: block;
+}
+.star-wrapper.half .star-empty {
+  display: none;
+}
+.star-wrapper.empty .star-full {
+  display: none;
+}
+.star-wrapper.empty .star-half {
+  display: none;
+}
+.star-wrapper.empty .star-empty {
+  display: full;
+}
+.rating-value {
+  display: none;
 }

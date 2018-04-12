@@ -1,3 +1,4 @@
+var map;
 function loadMapsApi() {
     var p = document.location.protocol;
     var s = document.createElement('script');
@@ -19,6 +20,8 @@ function loadMapsApiWithCurrentLoc() {
 function loadedMapsWithLoc() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(successGetLoadinglocation, failGetLoadingLocation);
+    } else {
+        loadDefaultMap();
     }
 }
 
@@ -55,9 +58,10 @@ function successGetLoadinglocation(position) {
 }
 function failGetLoadingLocation(error) {
     console.log(error);// FIX ME - ERROR HANDLING
+    loadDefaultMap();
 }
-var map;
-function mapScriptLoaded() {
+
+function loadDefaultMap() {
     var gpsLoc = {
         lat: 40.5941989,
         lng: -111.8592
@@ -88,20 +92,25 @@ function mapScriptLoaded() {
 }
 
 function getAddressLatLng(address, callback) {
+    var addressStr = "";
+    for (var key in address) {
+        addressStr.concat(address[key], " ");
+    }
     var mGeocoder = new google.maps.Geocoder();
     mGeocoder.geocode(
         {
-            'address': address
+            'address': addressStr
         },
         function (results, status) {
             if (status == 'OK') {
 
                 if (results.length == 1) {
                     // HAVE 1 RESULTS
-                    callback(results[0].geometry.location);
+                    //callback(results[0].geometry.location);
+                    callback(results[0].geometry);
                 } else if (results.length > 1) {
                     // MORE THAN 1 RESULT        
-                    callback(results[0].geometry.location);// FIX ME handle multiple results
+                    callback(results[0].geometry);// FIX ME handle multiple results
                 } else {
                     // NO RESULTS
                     return null;
@@ -110,32 +119,6 @@ function getAddressLatLng(address, callback) {
         }
     );
 
-}
-
-// GETS THE ADDRESS AS latlng
-// MAY HAVE MULTIPLE RESULTS
-function getModalAddress() {
-    var addressLine1 = "",
-        addressLine2 = "",
-        city = "",
-        state = "",
-        zip = "";
-
-    addressLine1 = $('.txb-address-line1').val();
-    addressLine2 = $('.txb-address-line2').val();
-    city = $('.txb-city').val();
-    state = $('.state-item.selected').html();
-    zip = $('.txb-zip').val();
-
-    var addressStr = "";
-    addressStr += addressLine1 + ' ';
-    addressStr += addressLine2 + ' ';
-    addressStr += city + ' ';
-    addressStr += state + ' ';
-    addressStr += zip + ' ';
-
-    // GET ADDRESS    
-    var addressLatLng = getAddressLatLng(addressStr, getUserMarker);
 }
 
 // SHOW RESULTS AS MARKERS

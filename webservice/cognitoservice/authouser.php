@@ -21,9 +21,6 @@ if ((isset($_POST['un'])) && (isset($_POST['pw']))){
             echo json_encode($result['AuthenticationResult']);
             break;
     }
-
-    
-    
  
 }
 

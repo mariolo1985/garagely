@@ -40,7 +40,6 @@ function handleToke(callbackHandler) {
     }
 }
 
-
 /***** FACEBOOK  HELPERS *****/
 // LOAD FB SCRIPTS
 function loadFB() {
