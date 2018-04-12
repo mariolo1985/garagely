@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name='viewport' content='width=device-width,initial-scale=1' />
+    <title>Sign Up...</title>
+    <link rel='stylesheet' href='../css/master.min.css' />
+</head>
+
+<body>
+    <section class='landing-header-container clear'>
+        <a href='../autho' class='header-signup-link'>Login</a>
+        <a href='../map' class='header-signup-link'>Map</a>        
+    </section>
+
+    <section class='landing-content-container signup-content-container'>
+        <!-- BG -->
+        <div class='signup-bg-wrapper'>
+        </div>
+
+        <!-- login -->
+        <div class='login-wrapper'>
+            <div class='input-wrapper'>
+                <div class='input-row'>
+                    <label>Username:</label>
+                    <input class='input-login input-username' type='text' />
+                </div>
+                <div class='input-row'>
+                    <label>Password:</label>
+                    <input class='input-login input-pw' type='password' />
+                </div>
+                <div class='input-row'>
+                    <label>Email:</label>
+                    <input class='input-login input-email' type='text' />
+                </div>
+                <div class='input-row btn-row clear'>
+                    <div class='btn-wrapper'>
+                        <div class='padding-helper'>
+                            <button class='btn full-width btn-cancel' tabindex='-1'>Cancel</button>
+                        </div>
+                    </div>
+                    <div class='btn-wrapper'>
+                        <div class='padding-helper'>
+                            <button class='btn full-width btn-signup btn-success' tabindex='-1'>Signup</button>
+                        </div>
+                    </div>
+                </div>
+                <div class='input-row clear'>
+                    <div class='padding-helper'>
+                        <button class='btn full-width btn-fb-connect'>Sign Up with Facebook</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class='loader hide'>
+        <img src='../images/loader.gif' class='loader-img' />
+    </div>
+
+    <script src='../js/jquery.js'></script>
+    <script src='../js/base.js'></script>
+    <script src='../js/signup_bundle.js'></script>
+</body>
+
+</html>

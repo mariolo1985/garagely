@@ -1,0 +1,31 @@
+@import "font.less";
+.clear:before,
+.clear:after{
+    clear:both;
+    display:table;
+    content:'';
+}
+html,
+body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow:hidden;
+    font-family: @default-font;
+}
+
+
+@import "maps.less";// MAPS
+
+@import "nav.less";
+@import "landing.less";
+@import "login.less";// LOGIN PAGE
+@import "autho.less";// AUTHO PAGE
+@import "index.less"; // map
+@import "profile.less";
+
+@import "content.less";// content
+@import "button.less";// BUTTONS
+
+@import "ratings.less";// RATINGS

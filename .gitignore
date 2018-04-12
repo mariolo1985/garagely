@@ -1,0 +1,6 @@
+.DS_Store
+.aws
+node_modules
+.vscode
+build
+webservice/frameworks

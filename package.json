@@ -1,0 +1,38 @@
+{
+  "name": "garagely",
+  "version": "0.0.1",
+  "description": "Garagely",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "lessc webapp/less/master.less webapp/css/master.css && cleancss -o webapp/css/master.min.css webapp/css/master.css",
+    "build:js": "uglifyjs /webapp/js/base.js -o /webapp/js/base.min.js",
+    "build:component": "babel ./components --out-dir ./build",
+    "build:injector": "webpack --process -p",
+    "build:devinjector": "webpack --process",
+    "build:dev": "npm run build:css && npm run build:component && npm run build:devinjector",
+    "build:prod": "npm run build:css && npm run build:component && npm run build:injector"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariolo1985/garagely.git"
+  },
+  "author": "M Lo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mariolo1985/garagely/issues"
+  },
+  "homepage": "https://github.com/mariolo1985/garagely#readme",
+  "dependencies": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-1": "^6.16.0",
+    "webpack": "^1.13.3"
+  }
+}
